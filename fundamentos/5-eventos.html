@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Fundamentos</title>
+</head>
+<body>
+  <div id="root">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </div>
+  <script type="text/babel">
+    function Alert1(){
+      function handleAlertClick(event){
+        console.log(event)
+        alert("Mensagem de alerta!")
+      }
+      return (
+        <button type="button" onClick={handleAlertClick}>Mostrar Alerta</button>
+      )
+    }
+
+    function Alert2(){
+      function handleAlertClick(msg){
+        alert(msg)
+      }
+      return(
+        <button onClick={() => handleAlertClick('Uma mensagem de alerta')}>
+          Mostrar alerta com o parâmetro!  
+        </button>
+      )
+
+      function inputChange(event){
+        console.log(event.target.value)
+      }
+    }
+
+    function Alert3(){
+      function handleAlertClick(event){
+        alert(event.target.previousSibling.value)
+      }
+      return (
+        <div>
+          <input type="text" placeholder="Digite algo..." 
+          onChange={inputChange}/>
+          <button onClick={handleAlertClick}>
+            Mostrar alerta do campo de texto  
+          </button>  
+        </div>
+      )
+    }
+
+    function App(){
+      return (
+        <main>
+          <Alert1 />
+          <Alert2 />
+          <Alert3 />
+        </main>
+      )
+    }
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+  
+</body>
+</html>
